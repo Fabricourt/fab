@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}  | {{ user.username|capfirst }}  {% endblock %}
+
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ user.username|capfirst }} Profile</h1>
+          <p >{{ user.email }}</p>
+          <p class="lead">Manage your Profile account</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <div class="w3-content ">
+      <div class="w3-row w3-margin">
+        <div class="w3-quarter">
+          <div>
+          <h3>Profile Image</h3>
+            <img class="w3-margin w3-center account-img w3-border w3-white w3-hover-grayscale   w3-padding" src="{{ user.profile.image.url }}" style="width:200px">
+          </div>
+         
+
+        </div>
+        <div class="w3-twothird w3-margin w3-green w3-container">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Change your user and email info here</legend>
+                  {{ u_form|crispy }}
+              </fieldset>
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Change Your Pictures here</legend>
+                  <h1>Please Note You can Also Showcase Your work pictures to show them in your job post just choose and update</h1>
+
+                  {{ p_form|crispy }}
+                 
+                
+              </fieldset>
+              <div class="form-group">
+                  <button class="btn btn-outline-info w3-2019-princess-blue" type="submit">Update</button>
+              </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+        
+  
+{% endblock content %}

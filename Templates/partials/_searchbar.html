@@ -1,0 +1,61 @@
+<div class="w3-container w3-text-amber w3-round  w3-topbar w3-border-amber w3-theme-d5 w3-margin-bottom ">
+    <h3 class="w3-center w3-text-amber">Linking You To The Best Workers</h3>
+    <hr>
+    <form>
+        
+        <div class="form-group">
+          <label class="sr-only">Keywords</label>
+          <input type="text" name="keywords" class="form-control" placeholder="Keyword (search)">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">home</label>
+            <input type="text" name="home" class="form-control" placeholder="Home Location" value="{{ values.home }}">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Country</label>
+            <select name="country" class="form-control">
+            <option selected="true" disabled="disabled">Country</option>
+              {% for key,value in country_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Expirience</label>
+            <select name="expirience" class="form-control">
+              <option selected="true" disabled="disabled">Expirience</option>
+              {% for key,value in expirience_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Education Level</label>
+            <select name="education_level" class="form-control">
+              <option selected="true" disabled="disabled">Education Level</option>
+              {% for key,value in education_level_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Colleges</label>
+            <select name="college" class="form-control">
+              <option selected="true" disabled="disabled">Colleges</option>
+              {% for key,value in colleges_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="age" class="form-control" id="type">
+                <option selected="true" disabled="disabled">Age</option>
+                {% for key,value in age_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+              </select>
+        </div>
+    <button class="btn w3-theme-l1 btn-block w3-hover-amber mt-4 w3-margin-bottom" type="submit">Submit form</button>
+  </form>
+</div>
+   

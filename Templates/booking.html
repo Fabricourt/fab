@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} | Welcome {% endblock %}
+
+{% block content %}
+
+
+<section>
+
+<div class="card Jumbotron w3-margin w3-black mb-3">
+        <button class="w3-white w3-xlarge w3-round-xxlarge w3-center w3-hover-red  w3-btn w3-block" data-toggle="modal" data-target="#inquiryModal"> <h1 class="w3-jumbo w3-center">Truck Reservation</h1>
+
+        Make Your Booking Here
+        <h5 class="w3-center"><span class="w3-text-red">NB:</span>Pick unique dates</h5>
+    </button>
+</div>
+
+  </section>
+ <div class="w3-panel">
+     <!-- Alerts -->
+     {% include 'partials/_alerts.html' %}
+ </div>
+  <!-- Inquiry Modal -->
+  <div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header w3-win8-red">
+          <h5 class="modal-title w3-theme-d5" id="inquiryModalLabel">Fill in the form to send your booking</h5>
+        
+          <button type="button" class="close" data-dismiss="modal">
+            <span class="w3-text-white">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <form action="{% url 'booking' %}" method="POST">
+                {% csrf_token %}
+          
+               {% if user.is_authenticated %}
+             
+
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                {% else %}
+                  <input type="hidden" name="user_id" value="0">
+                {% endif %}
+                <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                <div class="form-group">
+                <label for="first_name">First Name</label>
+                      <input type="text" name="first_name" class="form-control" value="{{ user.first_name}}" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="last_name">Last Name</label>
+                      <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}" required>
+                    </div>
+                <div class="form-group">
+                  <label for="email" class="col-form-label">Email:</label>
+                  <input type="email" name="email" class="form-control"  value="{{ user.email }}"  required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number" class="col-form-label">Phone:</label>
+                    <input type="text" name="phone_number" class="form-control" required>
+                  </div>
+                <div class="form-group">
+                    <label for="address" class="col-form-label">Address:</label>
+                    <input type="text" name="address" class="form-control">
+                  </div>
+                <div class="form-group">
+                    <label for="ministry_name" class="col-form-label">Ministry name:</label>
+                    <input type="text" name="ministry_name" class="form-control" required>
+                  </div>
+                <div class="form-group">
+                    <label for="ministry_location" class="col-form-label">Ministry Location:</label>
+                    <input type="text" name="ministry_location" class="form-control" required>
+                  </div>
+                <div class="form-group">
+                    <label for="county" class="col-form-label">County:</label>
+                    <input type="text" name="county" class="form-control" required>
+                  </div>
+                  <h4>When you need the truck</h4>
+                <div class="form-group">
+                      <label for="booking_date" class="col-form-label">From:</label>
+                      <input type="date" name="booking_date" class="form-control" required>
+                    </div>
+                <div class="form-group">
+                    <label for="return_date" class="col-form-label">To: </label>
+                    <input type="date" name="return_date" class="form-control">
+                  </div>
+                <div class="form-group">
+                  <label for="description" class="col-form-label">Please fill in any other details here:</label>
+                  <textarea name="description" class="form-control"></textarea>
+                </div>
+                <hr>
+                <input type="submit" value="Send" class="btn btn-block btn-secondary">
+              </form>
+             <h1 class="w3-">Booking will be approved once you have paid</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if bookings %}
+<div class="w3-container">
+    <h2 class="w3-center">Bookings</h2>
+   
+    <table class="w3-table">
+      <tr>
+        <th class="w3-camo-black"> Ministry</th>
+        <th class="w3-camo-black">From</th>
+        <th class="w3-camo-black">To</th>
+        <th class="w3-camo-black">Approval</th>
+      
+        
+      </tr>
+      
+      {% for booking in bookings %}
+      <tr>
+        <td>{{booking.ministry_name}}</td>
+        <td>{{booking.booking_date}}</td>
+        <td>{{booking.return_date}}</td>
+        <td>
+            {% if booking.approved%}
+            <span class="w3-green w3-button ">Approved</span>
+            {% else %}
+            <span class="w3-red w3-button ">waiting.....</span>
+            {% endif %}
+
+        </td>
+       
+      </tr>
+      {% endfor %}
+
+{% else %}
+
+<p>THere are no testimonies</p>
+
+{% endif %}
+
+    </table>
+    <div><h3><span class="w3-text-red">NB:</span> You Booking will be approved once your payments are received.......</h3></div>
+  </div>
+  <br><br><br>
+  
+
+    {% endblock %}

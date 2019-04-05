@@ -1,0 +1,94 @@
+{% load static %}
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top w3-theme-d5">
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:50px; height:50px;"> </a>
+   <h3 class="w3-text-amber w3-panel w3-button w3-wide"><b>Fabricourt</b></h3>
+      <h4 class="w3-hide w3-wide w3-xlarge "><span class="w3-black w3-text-amber  w3-hover-amber"><b class=>F</b></span><span class="w3-amber"><b>A</b></span><span class="w3-black w3-text-amber w3-hover-amber"><b>B</b></span><span class="w3-amber"><b>R</b></span><span class="w3-black w3-text-amber w3-hover-amber"><b>I</b></span><span class="w3-amber"><b>C</b></span><span class="w3-black w3-text-amber w3-hover-amber"><b>O</b></span><span class="w3-amber"><b>U</b></span><span class="w3-black w3-text-amber w3-hover-amber"><b>R</b></span><span class="w3-amber"><b>T</b></span></h4>
+   
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li
+          {% if '/' == request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li
+          {% if 'about' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'about' %}">How it Works</a>
+        </li>
+       
+      
+      
+        <li
+          {% if 'workers' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'workers' %}">Workers</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post Your Resume</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="{% url 'post-create' %}">Create Resume</a>
+            <a class="dropdown-item" href="#">Create cv</a>
+            <a class="dropdown-item" href="#">Why you </a> 
+            <a class="dropdown-item" href="#">Work gallery</a>                                       
+          </div>
+      </li>
+        
+          <li class="nav-item mr-3">
+            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+            <form action="{% url 'logout' %}" method="POST" id="logout">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
+          </li>
+        {% else %}
+          <li
+          {% if 'register' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'register' %}">
+              <i class="fas fa-user-plus"></i> Register</a>
+          </li>
+          <li
+          {% if 'login' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'login' %}">
+              <i class="fas fa-sign-in-alt"></i>
+
+              Login</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>

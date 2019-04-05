@@ -1,0 +1,52 @@
+{% load static %}
+<div class="w3-card w3-round w3-topbar w3-border-amber w3-white w3-center  w3-magin-bottom w3-hide-small">
+  <div class="w3-container  w3-theme-d5">
+    <p class="w3-text-amber">Profile info:</p>
+    <img src="{{ user.profile.image.url }}" class="w3-bar-item w3-circle" style="width:85px;">
+    <p class="w3-text-amber"><strong>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</strong></p>
+    <p class="w3-text-amber"><span>age:45</span>     
+      <span>Expirience:25</span>  
+      <span>Education: Masters Degree</span> </p>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="w3-card w3-round w3-topbar w3-border-amber  w3-white w3-center w3-hide-small">
+    <div class="w3-container  w3-theme-d5">
+      <p class="w3-text-amber">Fresh Workers Right From College:</p>
+      <img src="{% static 'images/courses-image2.jpg' %}" alt="Forest" style="width:100%;">
+      <p class="w3-text-amber"><strong>Young & Energetic</strong></p>
+      <p class="w3-text-amber">Find Students From Diffrent Colleges</p>
+      <p ><button class="w3-button w3-block w3-theme w3-text-amber">COLLEGES</button></p>
+    </div>
+  </div>
+  <br>
+
+ 
+
+
+  
+  <div class="w3-card w3-round  w3-topbar w3-hide w3-white w3-border-theme w3-center">
+    <div class="w3-container">
+      <h4>Become Part Of Our Workers Blog</h4>
+        <img src="{% static 'images/download.jpg' %}" alt="Avatar" style="width:100%"><br>
+      <p> Speak about Your Expiriences & Help Others Become Better Workers </p>
+      
+    </div>
+  </div>
+  <br>
+  
+  <div class="w3-card w3-round  w3-hide w3-amber w3-padding-16 w3-center">
+        
+        <h3 class="w3-text-text">Employers Speakput</h3>
+      </div>
+  <br>
+  
+  <div class="w3-card w3-hide w3-round w3-theme-d5 w3-padding-32 w3-center">
+    
+      
+      <h3 class=" w3-padding w3-text-amber">How To Become To Find Your Dream Job</h3>
+  </div>  
+
+  

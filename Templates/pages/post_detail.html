@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+      
+      <div class="w3-text-amber w3-theme-d5  w3-card-4">
+      
+        <div class="w3-display-container w3-padding w3-margin-bottom">
+          
+          <img src="{{ object.name.profile.image.url }}"  style="width:100%; height:300px;" alt="Avatar">
+          
+          <div class="w3-display-bottomleft w3-container w3-theme-d5 w3-opacity-min w3-text-theme" style="width:100%;">
+      
+            <!--Empty Space-->
+             
+          </div>
+        </div>
+        
+        <div class="w3-container">
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ oject.job_title }}</p>  
+        
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.home }}</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.email }}</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-theme"></i>{{oject.phone }}</p>
+          <p><i class="fa fa-address-book-o fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.address }}</p>
+          <hr>
+         
+
+
+          
+      <!-- Accordion -->
+      <div class="w3-card w3-row-padding">
+          <div class="w3-white">
+            <button onclick="myFunction('Demo3')" class="w3-button w3-block  w3-hover-white w3-white w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-text-green w3-margin-right"></i> <span class="w3-text-black">My work In Pictures</span></button>
+            <div id="Demo3" class="w3-hide w3-container" w3>
+           <div class="w3-row-padding">
+           <br>
+             <div class="w3-half">
+               <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
+             </div>
+             <div class="w3-half">
+               <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+             </div>
+             <div class="w3-half">
+               <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+             </div>
+             <div class="w3-half">
+               <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+             </div>
+             <div class="w3-half">
+               <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+             </div>
+             <div class="w3-half">
+               <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+             </div>
+           </div>
+            </div>
+          </div>      
+        </div>
+        <br>
+    <!--End Accordion-->
+
+          
+          <br>
+        </div>
+      </div><br>
+      
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+            <h2 class="w3-text-black w3-padding-16"><i class="fa fa-certificate fa-fw w3-text-green w3-margin-right w3-xxlarge w3-text-red"></i>Resume</h2>
+            <div class="w3-container">
+             
+              <div>
+                {{ object.resume|safe }}
+              </div>
+      
+              
+              <hr>
+            </div>
+            
+         
+          </div>
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-black w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Why You Should Hire Me</h2>
+        
+     
+        <div>
+          {{ object.why_you_essay|safe }}
+        </div>
+
+      </div>
+
+      
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+
+</script>
+
+
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.name.profile.image.url }}" style="width:50px; height:50px;">
+    <div class="">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-posts' object.name.username %}">{{ object.name }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+        {% if object.name == user %}
+          <div>
+            <a class="w3-btn btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+            <a class="w3-btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.job_title }}</h2>
+      <p class="article-content">{{ object.cv }}</p>
+    </div>
+  </article>
+{% endblock content %}
