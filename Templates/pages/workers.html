@@ -55,20 +55,24 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <ul class="w3-ul w3-container w3-theme-l4 w3-margin-bottom w3-shadow">
                 <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                 {% for post in posts %}
-                  <li class="w3-bar w3-theme-l4 w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
-                    <a class="mr-2" href="{% url 'user-posts' post.name.username %}" style="text-decoration:none;">
-                      <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-xlarge w3-right">×</span>
-                        <div class="w3-bar-item w3-theme-d">
-                          <img src="{{ post.name.profile.image.url }}" class="w3-bar-item w3-circle " style="width:100px;">
-                        </div>
-                        <p></p>
-                              <span class="w3-normal">{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}</span><br>
-                              <span>Profession: {{ post.job_title }}</span>/
-                              <span>age:45</span>/    
-                              <span>Expirience:25</span>  
-                    </a>
-                  </li>            
-                {% endfor %}
+                <li class="w3-bar w3-theme-l4 w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
+                  <a class="mr-2" href="{% url 'user-posts' post.name.username %}" style="text-decoration:none;">
+                    <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-xlarge w3-right">×</span>
+                      <div class="w3-bar-item w3-third">
+                        <img src="{{ post.name.profile.image.url }}" class="w3-bar-item w3-hide-small w3-circle " style="width:100px;">
+                      </div>
+                      
+                      <div class="w3-twothirds  w3-small">
+                            <span class="w3-normal"><b>{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}</b></span><br>
+                            <span>Profession: {{ post.profession }}</span>/
+                            <span>Age:{{ post.age }}</span>/    
+                            <span>Expirience: {{ post.expirience }}</span>/ 
+                            <span>Education Level: {{ post.education_level }}</span>/ 
+                            <span>College: {{ post.college }}</span> 
+                      </div> 
+                  </a>
+                </li>            
+              {% endfor %}
             </ul>
         </div> 
     <!-- End Middle Column -->

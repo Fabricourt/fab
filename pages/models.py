@@ -19,14 +19,15 @@ class Post(models.Model):
     email = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     home = models.CharField(max_length=200, null=True, blank=True)
+    county = models.CharField(max_length=200, null=True, blank=True)
     is_fulltime = models.BooleanField()
     is_parttime = models.BooleanField()
-    is_employee = models.BooleanField()
+    is_employee = models.BooleanField(default=True)
     is_published = models.BooleanField(default=True)
 
     
     def __str__(self):
-        return self.job_title
+        return self.profession
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})

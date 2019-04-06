@@ -1,19 +1,28 @@
+profession_choices = {
+  'accountant':'accountant',
+  'teacher':'teacher',
+  'mechanic':'mechanic',
+  'mason':'mason',
+  'nurse':'nurse',
+  'designer':'designer',
+
+  }
 education_level_choices = {
-  'primary certificate':'primary certificate',
-  'secondary certificate':'secondary certificate',
-  'college diploma':'college diploma',
-  'bachelor degree':'bachelor degree',
-  'masters degree':'masters degree',
+  'certificate':'certificate',
+  'diploma':'diploma',
+  'degree':'degree',
+  'masters':'masters',
   'phd':'phd',
 
   }
 
-colleges_choices = {
+college_choices = {
     'kenyatta university': 'kenyatta university',
+    'mombasa technical institue ': 'mombasa technical institute',
 
 }
 
-country_choices = {
+county_choices = {
         'Baringo': 'Baringo',
         'Bomet': 'Bomet',
         'Bungoma': 'Bungoma',
@@ -127,9 +136,6 @@ age_choices = {
   '63':'63',
   '64':'64',
   '65':'65',
-
-
-
 }
 
 

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
-{% static load %}
+{% load static %}
 {% block content %}
-    <div class="content-section">
+    <div class="content-section w3-margin">
         <form method="POST">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Delete Post</legend>
-                <h2>Are you sure you want to delete the post "{{ object.title }}"</h2>
-                
+            <fieldset class="form-group  w3-margin">
+                <legend class="border-bottom w3-center mb-4  w3-text-red">Delete Post</legend>
+                <h2 class="w3-card w3-margin w3-xxlarge jumbotron w3-center ">Are you sure you want to delete your details, resume, & essay post </h2>
             </fieldset>
             <div class="form-group">
-                <button class="w3-button w3-red btn-outline-danger" type="submit">Yes, Delete</button>
-                <a class="w3-button w3-green btn-outline-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+                <button class="btn btn-outline w3-red" type="submit">Yes, Delete</button>
+                <a class="btn btn-outline w3-green" href="{% url 'post-detail' object.id %}">Cancel</a>
             </div>
         </form>
     </div>
+    <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br> <br>  <br><br>  <br>
 {% endblock content %}

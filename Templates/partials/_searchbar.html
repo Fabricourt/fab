@@ -1,7 +1,7 @@
 <div class="w3-container w3-text-amber w3-round  w3-topbar w3-border-amber w3-theme-d5 w3-margin-bottom ">
     <h3 class="w3-center w3-text-amber">Linking You To The Best Workers</h3>
     <hr>
-    <form>
+    <form action="{% url 'search' %}">
         
         <div class="form-group">
           <label class="sr-only">Keywords</label>
@@ -12,10 +12,19 @@
             <input type="text" name="home" class="form-control" placeholder="Home Location" value="{{ values.home }}">
         </div>
         <div class="form-group">
-            <label class="sr-only">Country</label>
-            <select name="country" class="form-control">
-            <option selected="true" disabled="disabled">Country</option>
-              {% for key,value in country_choices.items %}
+            <label class="sr-only">Profession</label>
+            <select name="profession" class="form-control">
+            <option selected="true" disabled="disabled">Profession</option>
+              {% for key,value in profession_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">County</label>
+            <select name="county" class="form-control">
+            <option selected="true" disabled="disabled">County</option>
+              {% for key,value in county_choices.items %}
                 <option value="{{ key }}">{{ value }}</option>
               {% endfor %}
             </select>
@@ -39,10 +48,10 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="sr-only">Colleges</label>
+            <label class="sr-only">College</label>
             <select name="college" class="form-control">
-              <option selected="true" disabled="disabled">Colleges</option>
-              {% for key,value in colleges_choices.items %}
+              <option selected="true" disabled="disabled">College</option>
+              {% for key,value in college_choices.items %}
                 <option value="{{ key }}">{{ value }}</option>
               {% endfor %}
             </select>
@@ -55,7 +64,7 @@
               {% endfor %}
               </select>
         </div>
-    <button class="btn w3-theme-l1 btn-block w3-hover-amber mt-4 w3-margin-bottom" type="submit">Submit form</button>
+    <button class="btn w3-theme-l1 btn-block w3-hover-amber mt-4 w3-margin-bottom" type="submit">Search</button>
   </form>
 </div>
    

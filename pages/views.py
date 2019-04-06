@@ -4,6 +4,9 @@ from partners.models import Partner
 #from team.models import Team
 from testaments.models import Testament
 from django.contrib.auth.decorators import login_required
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
+from pages.choices import age_choices, college_choices, education_level_choices, expirience_choices, county_choices, profession_choices
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -15,65 +18,41 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
-from pages.choices import age_choices, colleges_choices, education_level_choices, expirience_choices, country_choices
-
 
 def index(request):
     partners = Partner.objects.order_by('-membership_date').filter(is_published=True)[:4]
     testaments = Testament.objects.order_by('-post_date').filter(is_published=True)[:3]
-    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:10]
     
    
     context = {
         'posts': posts,
         'partners': partners,
         'testaments': testaments,
-        'country_choices': country_choices,
-        'colleges_choices': colleges_choices,
+        'profession_choices': profession_choices,
+        'county_choices': county_choices,
+        'college_choices': college_choices,
         'education_level_choices': education_level_choices,
         'expirience_choices': expirience_choices,
         'age_choices': age_choices,
-        
-        
     }
     return render(request, 'pages/index.html', context)
 
 
-def about(request):
-    return render(request, 'pages/about.html')
-
-
-def workers(request):
-    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-
-    context = {
-        'posts': posts,
-        'colleges_choices': colleges_choices,
-        'country_choices': country_choices,
-        'education_level_choices': education_level_choices,
-        'expirience_choices': expirience_choices,
-        'age_choices': age_choices,
-    }
-    return render(request, 'pages/workers.html', context)
-
-
-
 class PostListView(ListView):
     model = Post
-    template_name = 'pages/workers.html'  # <app>/<model>_<viewtype>.html
+    template_name = 'pages/index.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
     is_published = True
-    paginate_by = 2
+    paginate_by = 10
 
 
 class UserPostListView(ListView):
     model = Post
     template_name = 'pages/user_posts.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -87,23 +66,27 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
+
     fields = [
-        'profession', 
-        'why_you_essay', 
-        'resume', 
-        'date_posted', 
+        'profession',
         'name',
         'age',
-        'phone',
+        'expirience', 
         'email',
         'address',
         'home',
-        'expirience',
+        'county',
         'education_level',
-        'colleges',
+        'college',
+        'why_you_essay', 
+        'resume', 
+        'expirience',
+        'date_posted', 
         'is_fulltime',
         'is_parttime',
         'is_employee'
+      
+        
         ]
 
 
@@ -114,23 +97,26 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = fields = [
-        'profession', 
-        'why_you_essay', 
-        'resume', 
-        'date_posted', 
+
+    fields = [
+        'profession',
         'name',
         'age',
-        'phone',
+        'expirience', 
         'email',
         'address',
         'home',
-        'expirience',
+        'county',
         'education_level',
         'college',
+        'why_you_essay', 
+        'resume', 
+        'expirience',
+        'date_posted', 
         'is_fulltime',
         'is_parttime',
         'is_employee'
+  
         ]
 
     def form_valid(self, form):
@@ -146,13 +132,32 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = 'workers'
+    success_url = '/'
 
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.name:
             return True
         return False
+ 
+# about page
+def about(request):
+    return render(request, 'pages/about.html')
+
+
+# workers page
+def workers(request):
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'pages/workers.html', context)
+
+
+
+
+#hash search
 
 def search(request):
   queryset_list = Post.objects.order_by('-date_posted')
@@ -170,11 +175,17 @@ def search(request):
     if home:
       queryset_list = queryset_list.filter(home__iexact=home)
 
-  # Country
-  if 'country' in request.GET:
-    country = request.GET['country']
-    if country:
-      queryset_list = queryset_list.filter(country__iexact=country)
+ # profession
+  if 'profession' in request.GET:
+    profession = request.GET['profession']
+    if profession:
+      queryset_list = queryset_list.filter(profession__iexact=profession)
+
+  # County
+  if 'county' in request.GET:
+    county = request.GET['county']
+    if county:
+      queryset_list = queryset_list.filter(county__iexact=county)
  
   # expirience
   if 'expirience' in request.GET:
@@ -186,13 +197,13 @@ def search(request):
   if 'education_level' in request.GET:
     education_level = request.GET['education_level']
     if education_level:
-      queryset_list = queryset_list.filter(education_level__lte=education_level)
+      queryset_list = queryset_list.filter(education_level__iexact=education_level)
 
-  # colleges
-  if 'colleges' in request.GET:
-    colleges = request.GET['colleges']
-    if colleges:
-      queryset_list = queryset_list.filter(colleges__lte=colleges)
+  # college
+  if 'college' in request.GET:
+    college = request.GET['college']
+    if college:
+      queryset_list = queryset_list.filter(college__iexact=college)
 
   # age
   if 'age' in request.GET:
@@ -201,15 +212,16 @@ def search(request):
       queryset_list = queryset_list.filter(age__lte=age)
 
   context = {
-        'colleges_choices': colleges_choices,
-        'country_choices': country_choices,
+        'profession_choices': profession_choices,
+        'college_choices': college_choices,
+        'county_choices': county_choices,
         'education_level_choices': education_level_choices,
         'expirience_choices': expirience_choices,
         'age_choices': age_choices,
-        'pages': queryset_list,
+        'posts': queryset_list,
         'values': request.GET
 
   }
-
   return  render(request, 'pages/search.html', context)
+
 

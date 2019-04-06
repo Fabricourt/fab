@@ -1,143 +1,95 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 {% load static %}
+
+{% block title %} | Workforce {% endblock %}
+
 {% block content %}
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-</style>
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-signal.css">
 
 <!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
 
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">    
   <!-- The Grid -->
-  <div class="w3-row-padding">
-  
+  <div class="w3-row">
     <!-- Left Column -->
-    <div class="w3-third">
+    <div class="w3-col m3">
       
-      <div class="w3-text-amber w3-theme-d5  w3-card-4">
-      
-        <div class="w3-display-container w3-padding w3-margin-bottom">
-            {% for post in posts %}
-          <img src="{{ post.name.profile.image.url }}"  style="width:100%; height:300px;" alt="Avatar">
-          
-          <div class="w3-display-bottomleft w3-container w3-theme-d5 w3-opacity-min w3-text-theme" style="width:100%;">
-      
-            <!--Empty Space-->
-             
-          </div>
-        </div>
+      <!-- Profile -->
+      <div class="w3-card w3-white  ">
+          {% include 'partials/_searchbar.html' %} 
         
-        <div class="w3-container">
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.job_title }}</p>  
         
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.home }}</p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.email }}</p>
-          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-theme"></i>{{post.phone }}</p>
-          <p><i class="fa fa-address-book-o fa-fw w3-margin-right w3-large w3-text-theme"></i>{{post.address }}</p>
-          <hr>
-          {% endfor %}
-
-
-          
+      </div>
+      <br>
       <!-- Accordion -->
-      <div class="w3-card w3-row-padding">
-          <div class="w3-white">
-            <button onclick="myFunction('Demo3')" class="w3-button w3-block  w3-hover-white w3-white w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-text-green w3-margin-right"></i> <span class="w3-text-black">My work In Pictures</span></button>
-            <div id="Demo3" class="w3-hide w3-container" w3>
-           <div class="w3-row-padding">
-           <br>
-             <div class="w3-half">
-               <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-           </div>
-            </div>
-          </div>      
-        </div>
-        <br>
-    <!--End Accordion-->
-
-          
-          <br>
-        </div>
-      </div><br>
-      
+      {% include 'partials/_leftbar.html' %} 
     <!-- End Left Column -->
     </div>
-
-    <!-- Right Column -->
-    <div class="w3-twothird">
-        <div class="w3-container w3-card w3-white w3-margin-bottom">
-            <h2 class="w3-text-black w3-padding-16"><i class="fa fa-certificate fa-fw w3-text-green w3-margin-right w3-xxlarge w3-text-red"></i>Resume</h2>
-            <div class="w3-container">
-              {% for post in posts %}
-              <div>
-                {{ post.resume|safe }}
-              </div>
-      
-              {% endfor %}
-              <hr>
-            </div>
-            
-         
-          </div>
     
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-black w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Why You Should Hire Me</h2>
-        
-        {% for post in posts %}
-        <div>
-          {{ post.why_you_essay|safe }}
-        </div>
 
-        {% endfor %}
-      </div>
-
+    <!-- Middle Column -->
+    <div class="w3-col m7">
       
+        <div class="w3-row-padding">
 
+          <div class="w3-col m12">
+            <div class="w3-card  w3-round w3-white w3-topbar w3-border-amber">
+              <div class="w3-container w3-theme-d5 w3-padding">
+               <h3 class="w3-center w3-text-amber">Workforce</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w3-container w3-white w3-round w3-margin"><br>
+          <img src="{% static 'images/nini.jpg' %}" style="width:100%" class="w3-margin-bottom">
+            <ul class="w3-ul w3-container w3-theme-l4 w3-margin-bottom w3-shadow">
+                <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                {% for post in posts %}
+                <li class="w3-bar w3-theme-l4 w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
+                 
+                    <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-xlarge w3-right">×</span>
+                      <div class="w3-bar-item w3-third">
+                        <img src="{{ post.name.profile.image.url }}" class="w3-bar-item w3-hide-small w3-circle " style="width:100px;">
+                      </div>
+                    <a class="mr-2" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">
+                      <div class="w3-twothirds  w3-small">
+                            <span class="w3-normal"><b>{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}</b></span><br>
+                            <span>Profession: {{ post.profession|capfirst }}</span>/
+                            <span>Age:{{ post.age }}Yrs</span>/    
+                            <span>Expirience: {{ post.expirience }}Yrs</span>/ 
+                            <span>Education Level: {{ post.education_level|capfirst }}</span>/ 
+                            <span>College: {{ post.college|capfirst }}</span> /
+                            <span>County: {{ post.county|capfirst }}</span> 
+                          </a>    
+                      </div> 
+                 
+                </li>            
+              {% endfor %}
+              
+            </ul>
+            <button class="w3-button w3-theme-d5 w3-text-amber  w3-hover-amber  w3-border w3-round"><a href="" class="w3-text-amber w3-hover-text-black" style="text-decoration:none;">Discover More</a></button>
+        </div> 
+    <!-- End Middle Column -->
+    </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      {% include 'partials/_rightbar.html' %} 
+      
     <!-- End Right Column -->
     </div>
     
   <!-- End Grid -->
   </div>
   
-  <!-- End Page Container -->
+<!-- End Page Container -->
 </div>
-<script>
-// Accordion
-function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-    x.previousElementSibling.className += " w3-theme-d1";
-  } else { 
-    x.className = x.className.replace("w3-show", "");
-    x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-  }
-}
-
-
-</script>
-
-
-{% endblock content %}
+<br>
+{% endblock %}

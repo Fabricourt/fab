@@ -1,32 +1,28 @@
 {% load static %}
+{% if user.is_authenticated %}
 <div class="w3-card w3-round w3-topbar w3-border-amber w3-white w3-center  w3-magin-bottom w3-hide-small">
-  <div class="w3-container  w3-theme-d5">
-    <p class="w3-text-amber">Profile info:</p>
-    <img src="{{ user.profile.image.url }}" class="w3-bar-item w3-circle" style="width:85px;">
-    <p class="w3-text-amber"><strong>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</strong></p>
-    <p class="w3-text-amber"><span>age:45</span>     
-      <span>Expirience:25</span>  
-      <span>Education: Masters Degree</span> </p>
-  </div>
+  <div class="w3-container w3-padding  w3-theme-d5">
+      <a href="{% url 'profile'%}"> <img src="{{ user.profile.image.url }}" class="w3-bar-item w3-circle w3-margin-top " style="width:85px;"></a>
+    <p class="w3-text-amber w3-margin-top">Thank You <br><strong>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</strong><br>For Choosing Fabricourt</p>
+ 
+   </div>
 </div>
+
 <br>
 <br>
+{% endif %}
 
 <div class="w3-card w3-round w3-topbar w3-border-amber  w3-white w3-center w3-hide-small">
     <div class="w3-container  w3-theme-d5">
-      <p class="w3-text-amber">Fresh Workers Right From College:</p>
+      <p class="w3-text-amber w3-margin-top">@ Fabricourt you can find Fresh Workers Right From College:</p>
       <img src="{% static 'images/courses-image2.jpg' %}" alt="Forest" style="width:100%;">
-      <p class="w3-text-amber"><strong>Young & Energetic</strong></p>
+      <p class="w3-text-white"><strong>Young & Energetic</strong></p>
       <p class="w3-text-amber">Find Students From Diffrent Colleges</p>
-      <p ><button class="w3-button w3-block w3-theme w3-text-amber">COLLEGES</button></p>
+    
     </div>
   </div>
   <br>
 
- 
-
-
-  
   <div class="w3-card w3-round  w3-topbar w3-hide w3-white w3-border-theme w3-center">
     <div class="w3-container">
       <h4>Become Part Of Our Workers Blog</h4>
