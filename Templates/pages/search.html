@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} | Workforce {% endblock %}
+{% block title %} | Search Workforce {% endblock %}
 
 {% block content %}
 
@@ -42,7 +42,7 @@
           <div class="w3-col m12">
             <div class="w3-card  w3-round w3-white w3-topbar w3-border-amber">
               <div class="w3-container w3-theme-d5 w3-padding">
-               <h3 class="w3-center w3-text-amber">Workforce</h3>
+               <h3 class="w3-center w3-text-amber">Search Workforce</h3>
               </div>
             </div>
           </div>
@@ -52,7 +52,7 @@
             <ul class="w3-ul w3-container w3-theme-l4 w3-margin-bottom w3-shadow">
                 <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                 {% for post in posts %}
-                <li class="w3-bar w3-theme-l4 w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
+                <li class="w3-bar w3-white w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
                  
                     <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-xlarge w3-right">×</span>
                       <div class="w3-bar-item w3-third">
@@ -65,13 +65,52 @@
                             <span>Age:{{ post.age }}Yrs</span>/    
                             <span>Expirience: {{ post.expirience }}Yrs</span>/ 
                             <span>Education Level: {{ post.education_level|capfirst }}</span>/ 
-                            <span>College: {{ post.college|capfirst }}</span> /
-                            <span>County: {{ post.county|capfirst }}</span> 
+                            <span>College: {{ post.college|capfirst }}</span><br>
+                            <span>County: {{ post.county|capfirst }}</span>/
+                            <span>Posted: {{ post.date_posted }}</span> 
+
                           </a>    
                       </div> 
                  
                 </li>            
               {% endfor %}
+              <div class="row">
+                <div class="col-md-12">
+                  {% if posts.has_other_pages %}
+                    <ul class="pagination">
+                      {% if posts.has_previous %}
+                        <li class="page-item">
+                          <a href="?page={{posts.previous_page_number}}" class="page-link">&laquo;</a>
+                        </li>
+                      {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link">&laquo;</a>
+                        </li>
+                      {% endif %}
+                      {% for i in posts.paginator.page_range %}
+                        {% if posts.number == i %}
+                          <li class="page-item active">
+                            <a class="page-link">{{i}}</a>
+                          </li>
+                        {% else %}
+                          <li class="page-item">
+                            <a href="?page={{i}}" class="page-link">{{i}}</a>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if listings.has_next %}
+                        <li class="page-item">
+                          <a href="?page={{posts.next_page_number}}" class="page-link">&raquo;</a>
+                        </li>
+                      {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link">&raquo;</a>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                </div>
+              </div>
             </ul>
         </div> 
     <!-- End Middle Column -->

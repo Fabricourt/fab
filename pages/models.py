@@ -24,6 +24,7 @@ class Post(models.Model):
     is_parttime = models.BooleanField()
     is_employee = models.BooleanField(default=True)
     is_published = models.BooleanField(default=True)
+    favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
 
     
     def __str__(self):

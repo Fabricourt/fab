@@ -18,15 +18,22 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+
 
 def index(request):
     partners = Partner.objects.order_by('-membership_date').filter(is_published=True)[:4]
     testaments = Testament.objects.order_by('-post_date').filter(is_published=True)[:3]
-    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:10]
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)
+
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
     
    
     context = {
-        'posts': posts,
+        'posts': paged_posts,
         'partners': partners,
         'testaments': testaments,
         'profession_choices': profession_choices,
@@ -37,6 +44,9 @@ def index(request):
         'age_choices': age_choices,
     }
     return render(request, 'pages/index.html', context)
+
+
+
 
 
 class PostListView(ListView):
@@ -57,11 +67,13 @@ class UserPostListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(name=user).order_by('-date_posted')
-
+ 
 
 
 class PostDetailView(DetailView):
     model = Post
+    
+  
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -160,7 +172,10 @@ def workers(request):
 #hash search
 
 def search(request):
+ 
   queryset_list = Post.objects.order_by('-date_posted')
+ 
+
 
   #keywords
   if 'keywords' in request.GET:
@@ -224,4 +239,7 @@ def search(request):
   }
   return  render(request, 'pages/search.html', context)
 
+ 
 
+
+   

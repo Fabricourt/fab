@@ -2,14 +2,14 @@
 {% load static %}
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark  w3-theme-d5 fixed-top">
-    <img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:50px; height:50px;"> </a>
+<a href="{% url 'index' %}"><img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:50px; height:50px;"> </a> 
     <a class="navbar-brand w3-text-amber" href="{% url 'index' %}">Fabricourt</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav w3-half">
             <li
               {% if '/' == request.path %}
                 class="nav-item active mr-3"
@@ -39,8 +39,11 @@
               <a class="nav-link" href="{% url 'post-create' %}">Create Resume</a>
             </li>
           </ul>
+          <ul class="w3-quarter">
+
+          </ul>
     
-          <ul class="navbar-nav w3-right w3-margin-right ml-auto">
+          <ul class="navbar-nav w3-quarter ml-auto">
             {% if user.is_authenticated %}
             <li
               {% if 'profile' in request.path %}
@@ -54,7 +57,7 @@
       
               <li class="nav-item mr-3">
                 <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                  <i class="fas fa-sign-out-alt"></i> Logout
+                  <i class="fas fa-sign-out-alt w3-text-amber"></i> Logout
                 </a>
                 <form action="{% url 'logout' %}" method="POST" id="logout">
                   {% csrf_token %}
@@ -70,7 +73,7 @@
               {% endif %}
               >
                 <a class="nav-link" href="{% url 'register' %}">
-                  <i class="fas fa-user-plus"></i> Register</a>
+                  <i class="fas fa-user-plus w3-text-amber"></i> Register</a>
               </li>
               <li
               {% if 'login' in request.path %}
@@ -80,7 +83,7 @@
               {% endif %}
               >
                 <a class="nav-link" href="{% url 'login' %}">
-                  <i class="fas fa-sign-in-alt"></i>
+                  <i class="fas fa-sign-in-alt w3-text-amber"></i>
     
                   Login</a>
               </li>
