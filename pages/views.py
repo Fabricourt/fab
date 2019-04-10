@@ -27,7 +27,7 @@ def index(request):
     testaments = Testament.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)
 
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 5)
     page = request.GET.get('page')
     paged_posts = paginator.get_page(page)
     
