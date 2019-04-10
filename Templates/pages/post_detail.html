@@ -40,6 +40,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
         </div>
         
+<div style="width:100px;">{% include 'partials/_alerts.html' %}</div>    
+
         <div class="w3-container">
         {% if object.name == user %}
           <div class="w3-margin-bottom w3-padding">
@@ -50,13 +52,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
         {% endif %}
         <div >
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.name.first_name|capfirst }} {{ object.name.last_name|capfirst }}</p>  
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>age: {{ post.age }}</p>
+            <p><i class="fa fa-user-circle-o w3-margin-right w3-large w3-text-theme"></i>{{ object.name.first_name|capfirst }} {{ object.name.last_name|capfirst }}</p>  
+            <p><i class="fa fa-circle-o w3-margin-right w3-large w3-text-theme"></i>age: {{ post.age }}</p>
             <hr>    
             <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.profession }}</p>  
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>Expirience: {{ object.expirience }}  Years</p> 
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>Education: {{ object.education_level }}</p> 
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>College: {{ object.college }}</p> 
+            <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-large w3-text-theme"></i>Expirience: {{ object.expirience }}  Years</p> 
+            <p><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-large w3-text-theme"></i>Education: {{ object.education_level }}</p> 
+            <p><i class="fa fa-university w3-margin-right w3-large w3-text-theme"></i>College: {{ object.college }}</p> 
             <hr>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.home }}, {{object.country}}</p>
             <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.email }}</p>
@@ -99,7 +101,11 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <br>
     <!--End Accordion-->
            <!-- Inquiry Modal -->
-          <div class="modal-body">
+           <div class="w3-card w3-row-padding">
+            <div class="w3-white">
+              <button onclick="myFunction('Demo4')" class="w3-button w3-block  w3-hover-white w3-white w3-left-align"><i class="fa fa-envelope fa-fw w3-text-red w3-margin-right"></i> <span class="w3-text-black">Send an email to this person here</span></button>
+              <div id="Demo4" class="w3-hide w3-container" w3>
+                  <div>
             <form action="{% url 'contact' %}" method="POST">
               {% csrf_token %}
               {% if user.is_authenticated %}
@@ -107,7 +113,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               {% else %}
                 <input type="hidden" name="user_id" value="0">
               {% endif %}
-              <input type="hidden" name="post_email" value="{{ post.name.email }}">
+              <input type="hidden" name="post_education_level" value="{{ post.education_level }}">
+              <input type="hidden" name="post_phone" value="{{ post.phone }}">
+              <input type="hidden" name="post_email" value="{{ post.email }}">
               <input type="hidden" name="post_id" value="{{ post.id }}">
               <div class="form-group">
                 <label for="post_name" class="col-form-label w3-xlarge w3-center">Contact Person of Interest:</label>
@@ -129,13 +137,18 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               </div>
               <div class="form-group">
                 <label for="message" class="col-form-label">Message:</label>
-                <textarea name="message" class="form-control"></textarea>
+                <textarea name="message" class="form-control" placeholder="contact us to schedule your interview company x"></textarea>
               </div>
               <hr>
               <input type="submit" value="Send" class="btn btn-block btn-secondary">
             </form>
+           
           </div>
-        
+        </div>
+      </div>
+    </div>  
+   
+  
 
   
           

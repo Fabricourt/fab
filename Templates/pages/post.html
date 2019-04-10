@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
@@ -20,10 +24,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <div class="w3-third">
       
       <div class="w3-text-amber w3-theme-d5  w3-card-4">
+          <div class="w3-card w3-round w3-topbar w3-border-amber w3-white w3-center  w3-magin-bottom">
+              <div class="w3-container w3-padding  w3-theme-d5">
+                  <a href="{% url 'profile'%}"> <img src="{{ post.name.profile.image.url }}" class="w3-bar-item w3-circle w3-margin-top " style="width:65%;"></a>
+              
+               </div>
+            </div>
       
         <div class="w3-display-container w3-padding w3-margin-bottom">
-          
-          <img src="{{ object.name.profile.image.url }}" class="w3-bar-item w3-circle"  style="width:100%;" alt="Avatar">
           
           <div class="w3-display-bottomleft w3-container w3-theme-d5 w3-opacity-min w3-text-theme" style="width:100%;">
       
@@ -33,6 +41,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         </div>
         
         <div class="w3-container">
+            <form method="post">
+                {% csrf_token %}
+                Are you sure you want to delete: <b>{{ object }}</b>  ?
+                <input type="submit" value="Submit" />
+            </form>
+            
         {% if object.name == user %}
           <div class="w3-margin-bottom w3-padding">
             <i class="w3-text-white w3-small">update or delete you post here</i>
@@ -42,18 +56,18 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
         {% endif %}
         <div >
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.name.first_name|capfirst }} {{ object.name.last_name|capfirst }}</p>  
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}</p>  
             <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>age: {{ post.age }}</p>
             <hr>    
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.profession }}</p>  
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>Expirience: {{ object.expirience }}  Years</p> 
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>Education: {{ object.education_level }}</p> 
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>College: {{ object.college }}</p> 
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.profession }}</p>  
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>Expirience: {{ post.expirience }}  Years</p> 
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>Education: {{ post.education_level }}</p> 
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>College: {{ post.college }}</p> 
             <hr>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.home }}, {{object.country}}</p>
-            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.email }}</p>
-            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.phone }}</p>
-            <p><i class="fa fa-address-book-o fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.address }}</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.home }}, {{post.country}}</p>
+            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.email }}</p>
+            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.phone }}</p>
+            <p><i class="fa fa-address-book-o fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ post.address }}</p>
             <hr>
         </div> 
 
@@ -90,26 +104,69 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         </div>
         <br>
     <!--End Accordion-->
+           <!-- Inquiry Modal -->
+          <div class="modal-body">
+            <form action="{% url 'contact' %}" method="POST">
+              {% csrf_token %}
+              {% if user.is_authenticated %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+              {% else %}
+                <input type="hidden" name="user_id" value="0">
+              {% endif %}
+              <input type="hidden" name="post_email" value="{{ post.name.email }}">
+              <input type="hidden" name="post_id" value="{{ post.id }}">
+              <div class="form-group">
+                <label for="post_name" class="col-form-label w3-xlarge w3-center">Contact Person of Interest:</label>
+                <input type="text" name="post" class="form-control" value="{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}">
+              </div>
+              <div class="form-group">
+                <label for="name" class="col-form-label">Name:</label>
+                <input type="text" name="name" class="form-control"
+                 {% if user.is_authenticated %} 
+                 value="{{ user.first_name }} {{ user.last_name }}" {% endif %} required>
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-form-label">Email:</label>
+                <input type="email" name="email" class="form-control" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="col-form-label">Phone:</label>
+                <input type="text" name="phone" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="message" class="col-form-label">Message:</label>
+                <textarea name="message" class="form-control"></textarea>
+              </div>
+              <hr>
+              <input type="submit" value="Send" class="btn btn-block btn-secondary">
+            </form>
+          </div>
+        
 
+  
           
           <br>
         </div>
       </div><br>
-      
+      <a href="#"> 
+          <span id="favourite-section" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-large  w3-right"><i class="far fa-heart"></i></span>  
+        </a>
     <!-- End Left Column -->
+    
     </div>
 
     <!-- Right Column -->
     <div class="w3-twothird">
         <div class="w3-container w3-card w3-white w3-margin-bottom">
             <h2 class="w3-text-black w3-padding-16"><i class="fa fa-certificate fa-fw w3-text-green w3-margin-right w3-xxlarge w3-text-red"></i>Resume</h2>
+   
             <div class="w3-container">
              
-              <div>
-                {{ object.resume|safe }}
+              <div> 
+                {{ post.resume|safe }}
+
               </div>
-      
-              
+   
               <hr>
             </div>
             
@@ -121,9 +178,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         
      
         <div>
-          {{ object.why_you_essay|safe }}
+          {{ post.why_you_essay|safe }}
+        
         </div>
-
+       
       </div>
 
       
@@ -152,5 +210,5 @@ function myFunction(id) {
 
 
 </script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 {% endblock content %}

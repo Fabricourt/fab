@@ -3,7 +3,7 @@
 <div class="w3-card w3-round w3-topbar w3-border-amber w3-white w3-center  w3-magin-bottom w3-hide-small">
   <div class="w3-container w3-padding  w3-theme-d5">
       <a href="{% url 'profile'%}"> <img src="{{ user.profile.image.url }}" class="w3-bar-item w3-circle w3-margin-top " style="width:85px;"></a>
-    <p class="w3-text-amber w3-margin-top">Thank You <br><strong>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</strong><br>For Choosing Fabricourt</p>
+    <p class="w3-text-amber w3-margin-top">Thank You <br><strong class="w3-text-white">{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</strong><br>For Choosing Fabricourt</p>
  
    </div>
 </div>

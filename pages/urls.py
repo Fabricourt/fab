@@ -14,7 +14,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    #path('<int:post_id>', views.post, name='post'),
     path('workers', PostListView.as_view(), name='workers'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),

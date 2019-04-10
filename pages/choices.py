@@ -1,10 +1,13 @@
 profession_choices = {
   'accountant':'accountant',
+  'designer':'designer',
+  'doctor':'doctor',
+  'intern'
   'teacher':'teacher',
   'mechanic':'mechanic',
   'mason':'mason',
   'nurse':'nurse',
-  'designer':'designer',
+  
 
   }
 education_level_choices = {

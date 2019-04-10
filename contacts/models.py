@@ -4,6 +4,9 @@ from datetime import datetime
 class Contact(models.Model):
   post = models.CharField(max_length=200, blank=True, null=True )
   post_id = models.IntegerField()
+  post_education_level =  models.CharField(max_length=200, blank=True, null=True )
+  post_phone =  models.CharField(max_length=200, blank=True, null=True )
+  post_email =  models.CharField(max_length=200, blank=True, null=True )
   name = models.CharField(max_length=200, blank=True, null=True )
   email = models.CharField(max_length=400, blank=True, null=True )
   phone = models.CharField(max_length=100, blank=True, null=True )
