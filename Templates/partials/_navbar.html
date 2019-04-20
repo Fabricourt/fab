@@ -2,8 +2,8 @@
 {% load static %}
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-dark  w3-theme-d5 fixed-top">
-<a href="{% url 'index' %}"><img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:50px; height:50px;"> </a> 
-    <a class="navbar-brand w3-text-amber" href="{% url 'index' %}">Fabricourt</a>
+<a href="{% url 'index' %}"><img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:35px; height:35px;"> </a> 
+    <a class="navbar-brand w3-text-amber" href="{% url 'index' %}">Kimethi</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,42 +19,49 @@
             >
               <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home w3-text-amber"></i> Home</a>
             </li>
-          
-     
             <li
-              {% if 'post-create' in request.path %}
-                class="nav-item active mr-3"
-              {% else %}
-                class="nav-item mr-3"
-              {% endif %}
-            >
-              <a class="nav-link" href="{% url 'post-create' %}"><i class="fa fa-id-card-o w3-text-amber"></i> Post Resume</a>
-            </li>
-          </ul>
-         
-    
-          <ul class="navbar-nav w3-half ml-auto">
-            {% if user.is_authenticated %}
-            <li
-            {% if 'dashboard' in request.path %}
+            {% if 'pot_list' == request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item mr-3"
             {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-braille w3-text-amber"></i>
-               Employers Dashboard  </a>
-            </li>
+          >
+            <a class="nav-link" href="{% url 'pot_list' %}"><i class="fa fa-question w3-text-amber"></i> How To</a>
+          </li>
+          <li
+          {% if 'speak' == request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'speak' %}"><i class="fa fa-comment w3-text-amber"></i> Speak</a>
+        </li>
+
+           
+          </ul>
+
+          <ul class="navbar-nav w3-half ml-auto">
+            {% if user.is_authenticated %}
             <li
-              {% if 'profile' in request.path %}
-                class="nav-item active mr-3"
-              {% else %}
-                class="nav-item mr-3"
-              {% endif %}
-            >
-              <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user-plus w3-text-amber"></i> Profile</a>
-            </li>
-      
+            {% if 'workers' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'workers' %}"><i class="fa fa-id-card-o w3-text-amber"></i> Workers</a>
+          </li>
+          <li
+          {% if 'employers' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'employers' %}"><i class="fa fa-braille w3-text-amber"></i> Employers</a>
+        </li>
+
               <li class="nav-item mr-3">
                 <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
                   <i class="fas fa-sign-out-alt w3-text-amber"></i> Logout

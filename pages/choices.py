@@ -1,15 +1,4 @@
-profession_choices = {
-  'accountant':'accountant',
-  'designer':'designer',
-  'doctor':'doctor',
-  'intern'
-  'teacher':'teacher',
-  'mechanic':'mechanic',
-  'mason':'mason',
-  'nurse':'nurse',
-  
 
-  }
 education_level_choices = {
   'certificate':'certificate',
   'diploma':'diploma',
@@ -19,11 +8,6 @@ education_level_choices = {
 
   }
 
-college_choices = {
-    'kenyatta university': 'kenyatta university',
-    'mombasa technical institue ': 'mombasa technical institute',
-
-}
 
 county_choices = {
         'Baringo': 'Baringo',

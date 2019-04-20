@@ -1,0 +1,40 @@
+{% load static %}
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <br>
+  <br>
+  <br>
+<div class="container mt-3  w3-topbar w3-border-amber w3-padding w3-theme-d5">
+    
+  
+    <p class = "w3-center">search a topic your interested To Learn:</p>  
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    
+  <br>
+  
+    <ul class="list-group" id="myList">
+        {% for pot in pots %}
+            <a class="article-title" style="text-decoration:none; margin:1px;" href="{% url 'pot-detail' pot.id %}">
+                <li class="list-group-item">{{ pot.title }}</li>
+            </a>
+        {% endfor %}
+    </ul>  
+
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+

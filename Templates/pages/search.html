@@ -51,6 +51,7 @@
           <img src="{% static 'images/slider-image1.jpg' %}" style="width:100%" class="w3-margin-bottom">
             <ul class="w3-ul w3-container w3-theme-l4 w3-margin-bottom w3-shadow">
                 <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+              
                 {% for post in posts %}
                 <li class="w3-bar w3-white w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
                  
@@ -74,6 +75,8 @@
                  
                 </li>            
               {% endfor %}
+             
+
               <div class="row">
                 <div class="col-md-12">
                   {% if posts.has_other_pages %}

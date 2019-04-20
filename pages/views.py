@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from partners.models import Partner
-#from team.models import Team
-from testaments.models import Testament
+from testaments.models import Pot
 from django.contrib.auth.decorators import login_required
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
-from pages.choices import age_choices, college_choices, education_level_choices, expirience_choices, county_choices, profession_choices
+from pages.choices import age_choices, education_level_choices, expirience_choices, county_choices
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -24,7 +23,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def index(request):
     partners = Partner.objects.order_by('-membership_date').filter(is_published=True)[:4]
-    testaments = Testament.objects.order_by('-post_date').filter(is_published=True)[:3]
+    pots = Pot.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)
 
     paginator = Paginator(posts, 5)
@@ -35,18 +34,13 @@ def index(request):
     context = {
         'posts': paged_posts,
         'partners': partners,
-        'testaments': testaments,
-        'profession_choices': profession_choices,
+        'pots': pots,
         'county_choices': county_choices,
-        'college_choices': college_choices,
         'education_level_choices': education_level_choices,
         'expirience_choices': expirience_choices,
         'age_choices': age_choices,
     }
     return render(request, 'pages/index.html', context)
-
-
-
 
 
 class PostListView(ListView):
@@ -154,22 +148,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
  
-# about page
-def about(request):
-    return render(request, 'pages/about.html')
-
-
-# workers page
-def workers(request):
-    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-
-    context = {
-        'posts': posts,
-    }
-    return render(request, 'pages/workers.html', context)
-
-
-
 
 #hash search
 
@@ -185,18 +163,25 @@ def search(request):
     if keywords:
       queryset_list = queryset_list.filter(resume__icontains=keywords)
 
-  
+    # profession
+  if 'profession' in request.GET:
+        profession = request.GET['profession']
+        if profession:
+            queryset_list = queryset_list.filter(profession__icontains=profession)
+
   # home
   if 'home' in request.GET:
     home = request.GET['home']
     if home:
       queryset_list = queryset_list.filter(home__iexact=home)
 
- # profession
-  if 'profession' in request.GET:
-    profession = request.GET['profession']
-    if profession:
-      queryset_list = queryset_list.filter(profession__iexact=profession)
+   # college
+  if 'college' in request.GET:
+    college = request.GET['college']
+    if college:
+      queryset_list = queryset_list.filter(college__icontains=college)
+
+
 
   # County
   if 'county' in request.GET:
@@ -216,12 +201,7 @@ def search(request):
     if education_level:
       queryset_list = queryset_list.filter(education_level__iexact=education_level)
 
-  # college
-  if 'college' in request.GET:
-    college = request.GET['college']
-    if college:
-      queryset_list = queryset_list.filter(college__iexact=college)
-
+ 
   # age
   if 'age' in request.GET:
     age = request.GET['age']
@@ -229,8 +209,7 @@ def search(request):
       queryset_list = queryset_list.filter(age__lte=age)
 
   context = {
-        'profession_choices': profession_choices,
-        'college_choices': college_choices,
+      
         'county_choices': county_choices,
         'education_level_choices': education_level_choices,
         'expirience_choices': expirience_choices,
@@ -241,7 +220,15 @@ def search(request):
   }
   return  render(request, 'pages/search.html', context)
 
- 
+def workers(request):
+    return render(request, 'pages/workers.html')
 
+def employers(request):
+    return render(request, 'pages/employers.html')
 
-   
+def howto(request):
+    return render(request, 'pages/howto.html')
+
+def speak(request):
+    return render(request, 'pages/speak.html')
+

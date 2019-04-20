@@ -8,18 +8,18 @@
           <input type="text" name="keywords" class="form-control" placeholder="Keyword (search)">
         </div>
         <div class="form-group">
+          <label class="sr-only">Profession</label>
+          <input type="text" name="profession" class="form-control" placeholder="profession (search)">
+        </div>
+        <div class="form-group">
             <label class="sr-only">home</label>
             <input type="text" name="home" class="form-control" placeholder="Home Location" value="{{ values.home }}">
         </div>
         <div class="form-group">
-            <label class="sr-only">Profession</label>
-            <select name="profession" class="form-control">
-            <option selected="true" disabled="disabled">Profession</option>
-              {% for key,value in profession_choices.items %}
-                <option value="{{ key }}">{{ value }}</option>
-              {% endfor %}
-            </select>
+          <label class="sr-only">College</label>
+          <input type="text" name="college" class="form-control" placeholder="college (search)">
         </div>
+     
         <div class="form-group">
             <label class="sr-only">County</label>
             <select name="county" class="form-control">
@@ -47,15 +47,7 @@
               {% endfor %}
             </select>
         </div>
-        <div class="form-group">
-            <label class="sr-only">College</label>
-            <select name="college" class="form-control">
-              <option selected="true" disabled="disabled">College</option>
-              {% for key,value in college_choices.items %}
-                <option value="{{ key }}">{{ value }}</option>
-              {% endfor %}
-            </select>
-        </div>
+        
         <div class="form-group">
             <select name="age" class="form-control" id="type">
                 <option selected="true" disabled="disabled">Age</option>
@@ -67,4 +59,3 @@
     <button class="btn w3-theme-l1 btn-block w3-hover-amber mt-4 w3-margin-bottom" type="submit">Search</button>
   </form>
 </div>
-   
