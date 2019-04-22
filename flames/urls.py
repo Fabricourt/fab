@@ -10,6 +10,7 @@ from contacts.views import contact
 urlpatterns = [
     path('', include('pages.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
     path('contacts/', include('contacts.urls')),
     path('accounts/', include('accounts.urls')),
     path('partners/', include('partners.urls')),

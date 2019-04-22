@@ -10,6 +10,7 @@ from .views import (
     PostDeleteView,
     UserPostListView
 )
+
 from . import views
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('howto', views.howto, name='howto'), 
     path('speak', views.speak, name='speak'), 
     path('search', views.search, name='search'),
+
 ] 

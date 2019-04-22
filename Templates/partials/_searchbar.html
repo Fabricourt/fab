@@ -1,5 +1,5 @@
 <div class="w3-container w3-text-amber w3-round  w3-topbar w3-border-amber w3-theme-d5 w3-margin-bottom ">
-    <h3 class="w3-center w3-text-amber">Linking You To The Best Workers</h3>
+    <h3 class="w3-center w3-text-amber">Filters Linking You To The Best Workers</h3>
     <hr>
     <form action="{% url 'search' %}">
         
@@ -12,7 +12,11 @@
           <input type="text" name="profession" class="form-control" placeholder="profession (search)">
         </div>
         <div class="form-group">
-            <label class="sr-only">home</label>
+          <label class="sr-only">Service Providers</label>
+          <input type="text" name="service" class="form-control" placeholder="service providers (search)">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Home Town</label>
             <input type="text" name="home" class="form-control" placeholder="Home Location" value="{{ values.home }}">
         </div>
         <div class="form-group">

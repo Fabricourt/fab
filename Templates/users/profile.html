@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section id="showcase-inner" class="py-5 text-white">
+<section id="showcase-inner" class="py-5 w3-text-white w3-theme" style="margin-top:0px;">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
@@ -29,17 +29,15 @@
          
 
         </div>
-        <div class="w3-twothird w3-margin w3-green w3-container">
+        <div class="w3-twothird w3-margin w3-theme-d5 w3-container">
             <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <fieldset class="form-group">
-                  <legend class="border-bottom mb-4">Change your user and email info here</legend>
+                  <legend class="border-bottom mb-4 w3-center w3-text-amber">Change your user and email info here</legend>
                   {{ u_form|crispy }}
               </fieldset>
               <fieldset class="form-group">
-                  <legend class="border-bottom mb-4">Change Your Pictures here</legend>
-                  <h1>Please Note You can Also Showcase Your work pictures to show them in your job post just choose and update</h1>
-
+                 
                   {{ p_form|crispy }}
                  
                 

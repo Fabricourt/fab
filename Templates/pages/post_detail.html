@@ -23,87 +23,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <!-- Left Column -->
     <div class="w3-third">
       
-      <div class="w3-text-amber w3-theme-d5  w3-card-4">
-          <div class="w3-card w3-round w3-topbar w3-border-amber w3-white w3-center  w3-magin-bottom">
-              <div class="w3-container w3-padding  w3-theme-d5">
+      <div class="w3-text-amber w3-round w3-topbar w3-border-amber w3-theme-d5  w3-card-4">
+          <div class=" w3-center  w3-magin-bottom">
+              <div class="w3-container w3-padding  ">
                   <a href="{% url 'profile'%}"> <img src="{{ object.name.profile.image.url }}" class="w3-bar-item w3-circle w3-margin-top " style="width:65%;"></a>
-              
-               </div>
-            </div>
-      
-        <div class="w3-display-container w3-padding w3-margin-bottom">
-          
-          <div class="w3-display-bottomleft w3-container w3-theme-d5 w3-opacity-min w3-text-theme" style="width:100%;">
-      
-            <!--Empty Space-->
-             
-          </div>
-        </div>
-        
-<div style="width:100px;">{% include 'partials/_alerts.html' %}</div>    
-
-        <div class="w3-container">
-        {% if object.name == user %}
-          <div class="w3-margin-bottom w3-padding">
-            <i class="w3-text-white w3-small">update or delete you post here</i>
-         
-            <a class="w3-btn btn w3-green btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-            <a class="w3-btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-          </div>
-        {% endif %}
-        <div >
-            <p><i class="fa fa-user-circle-o w3-margin-right w3-large w3-text-theme"></i>{{ object.name.first_name|capfirst }} {{ object.name.last_name|capfirst }}</p>  
-            <p><i class="fa fa-circle-o w3-margin-right w3-large w3-text-theme"></i>age: {{ object.age }}</p>
-            <hr>    
-            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.profession }}</p>  
-            <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-large w3-text-theme"></i>Expirience: {{ object.expirience }}  Years</p> 
-            <p><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-large w3-text-theme"></i>Education: {{ object.education_level }}</p> 
-            <p><i class="fa fa-university w3-margin-right w3-large w3-text-theme"></i>College: {{ object.college }}</p> 
-            <hr>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.home }}, {{object.country}}</p>
-            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.email }}</p>
-            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.phone }}</p>
-            <p><i class="fa fa-address-book-o fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.address }}</p>
-            <hr>
-        </div> 
-
-
-          
-      <!-- Accordion -->
-      <div class="w3-card w3-row-padding">
-          <div class="w3-white">
-            <button onclick="myFunction('Demo3')" class="w3-button w3-block  w3-hover-white w3-white w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-text-green w3-margin-right"></i> <span class="w3-text-black">My work In Pictures</span></button>
-            <div id="Demo3" class="w3-hide w3-container" w3>
-           <div class="w3-row-padding">
-           <br>
-             <div class="w3-half">
-               <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-             <div class="w3-half">
-               <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-             </div>
-           </div>
-            </div>
-          </div>      
-        </div>
-        <br>
-    <!--End Accordion-->
-           <!-- Inquiry Modal -->
-           <div class="w3-card w3-row-padding">
-            <div class="w3-white">
-              <button onclick="myFunction('Demo4')" class="w3-button w3-block  w3-hover-white w3-white w3-left-align"><i class="fa fa-envelope fa-fw w3-text-red w3-margin-right"></i> <span class="w3-text-black">Send an email to this person here</span></button>
+                <!-- Inquiry Modal -->
+           <div class="w3-card w3-row-padding w3-white w3-margin-top" style="width:100%;">
+            <div class="">
+              <button onclick="myFunction('Demo4')" class="w3-button w3-block  w3-hover-white w3-white w3-left-align"><i class="fa fa-envelope fa-fw w3-text-red w3-margin-right"></i> <span class="w3-text-black">Email  {{ post.name.first_name|capfirst }}</span></button>
               <div id="Demo4" class="w3-hide w3-container" w3>
                   <div>
             <form action="{% url 'contact' %}" method="POST">
@@ -118,7 +45,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               <input type="hidden" name="post_email" value="{{ post.email }}">
               <input type="hidden" name="post_id" value="{{ post.id }}">
               <div class="form-group">
-                <label for="post_name" class="col-form-label w3-xlarge w3-center">Contact Person of Interest:</label>
+                <label for="post_name" class="col-form-label w3-xlarge w3-center">Contact Person:</label>
                 <input type="text" name="post" class="form-control" value="{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}">
               </div>
               <div class="form-group">
@@ -142,11 +69,52 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
               <hr>
               <input type="submit" value="Send" class="btn btn-block btn-secondary">
             </form>
-           
+           <br>
           </div>
         </div>
       </div>
     </div>  
+               </div>
+            </div>
+      
+        <div class="w3-display-container w3-padding w3-margin-bottom">
+          
+          <div class="w3-display-bottomleft w3-container w3-theme-d5 w3-opacity-min w3-text-theme" style="width:100%;">
+      
+            <!--Empty Space-->
+             
+          </div>
+        </div>
+        
+
+        <div class="w3-container">
+            {% include 'partials/_alerts.html' %}
+        {% if object.name == user %}
+          <div class="w3-margin-bottom w3-padding">
+         
+            <a class="w3-btn btn w3-green btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+            <a class="w3-btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+            <i class="w3-text-white w3-small">update or delete you posts here</i>
+         
+          </div>
+        {% endif %}
+        <div >
+            <p><i class="fa fa-user-circle-o w3-margin-right w3-large w3-text-theme"></i>{{ object.name.first_name|capfirst }} {{ object.name.last_name|capfirst }}</p>  
+            <p><i class="fa fa-circle-o w3-margin-right w3-large w3-text-theme"></i>age: {{ object.age }}</p>
+            <hr>    
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.profession }}</p>  
+            <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-large w3-text-theme"></i>Expirience: {{ object.expirience }}  Years</p> 
+            <p><i class="fa fa-graduation-cap fa-fw w3-margin-right w3-large w3-text-theme"></i>Education: {{ object.education_level }}</p> 
+            <p><i class="fa fa-university w3-margin-right w3-large w3-text-theme"></i>College: {{ object.college }}</p> 
+            <hr>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.home }}, {{object.country}}</p>
+            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>{{ object.email }}</p>
+            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.phone }}</p>
+            <p><i class="fa fa-address-book-o fa-fw w3-margin-right w3-large w3-text-theme"></i>{{object.address }}</p>
+            <hr>
+        </div> 
+
+         
    
   
 
@@ -163,7 +131,64 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     </div>
 
     <!-- Right Column -->
+    
     <div class="w3-twothird">
+        <div class="container">
+           
+            <div class="row">
+              <div class="col-md-9">
+                <!-- Home Main Image -->
+                <img src="{{ object.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+                <!-- Thumbnails -->
+                <div class="row mb-5 thumbs">
+                  {% if object.photo_1 %}
+                  <div class="col-md-2">
+                    <a href="{{ object.photo_1.url }}" data-lightbox="home-images">
+                      <img src="{{ object.photo_1.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if object.photo_2 %}
+                  <div class="col-md-2">
+                    <a href="{{ object.photo_2.url }}" data-lightbox="home-images">
+                      <img src="{{ object.photo_2.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if object.photo_3 %}
+                  <div class="col-md-2">
+                    <a href="{{ object.photo_3.url }}" data-lightbox="home-images">
+                      <img src="{{ object.photo_3.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if object.photo_4 %}
+                  <div class="col-md-2">
+                    <a href="{{ object.photo_4.url }}" data-lightbox="home-images">
+                      <img src="{{ object.photo_4.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if object.photo_5 %}
+                  <div class="col-md-2">
+                    <a href="{{ object.photo_5.url }}" data-lightbox="home-images">
+                      <img src="{{ object.photo_5.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if object.photo_6 %}
+                  <div class="col-md-2">
+                    <a href="{{ object.photo_6.url }}" data-lightbox="home-images">
+                      <img src="{{ object.photo_6.url }}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        {% if object.resume %}
         <div class="w3-container w3-card w3-white w3-margin-bottom">
             <h2 class="w3-text-black w3-padding-16"><i class="fa fa-certificate fa-fw w3-text-green w3-margin-right w3-xxlarge w3-text-red"></i>Resume</h2>
    
@@ -179,7 +204,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
             
          
           </div>
-    
+          {% endif %}
+
+    {% if object.why_you_essay %} 
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-black w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-red"></i>Why You Should Hire Me</h2>
         
@@ -191,10 +218,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
        
       </div>
 
-      
+      {% endif %}
+
+    
 
     <!-- End Right Column -->
     </div>
+    
     
   <!-- End Grid -->
   </div>

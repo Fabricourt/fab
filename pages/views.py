@@ -88,7 +88,14 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         'why_you_essay', 
         'resume', 
         'expirience',
-        'date_posted', 
+        'date_posted',
+        'photo_main',
+        'photo_1',
+        'photo_2',
+        'photo_3',
+        'photo_4',
+        'photo_5',
+        'photo_6', 
         'is_fulltime',
         'is_parttime',
         'is_employee'
@@ -120,7 +127,14 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         'why_you_essay', 
         'resume', 
         'expirience',
-        'date_posted', 
+        'date_posted',
+        'photo_main',
+        'photo_1',
+        'photo_2',
+        'photo_3',
+        'photo_4',
+        'photo_5',
+        'photo_6', 
         'is_fulltime',
         'is_parttime',
         'is_employee'
@@ -231,4 +245,3 @@ def howto(request):
 
 def speak(request):
     return render(request, 'pages/speak.html')
-

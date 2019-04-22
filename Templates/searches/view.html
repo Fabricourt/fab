@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} | Workforce {% endblock %}
+{% block title %} | Search Workforce {% endblock %}
 
 {% block content %}
 
@@ -14,18 +14,16 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-signal.css">
 
 <!-- Page Container -->
-<br><br><br>
+
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">    
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
-    <div class="w3-col m3">
+    <div class="w3-col m3 w3-margin-bottom">
       
       <!-- Profile -->
-      <div>
+      <div class="w3-card w3-white w3-hide-small ">
           {% include 'partials/_searchbar.html' %} 
-        
-        
       </div>
       <br>
       <!-- Accordion -->
@@ -42,43 +40,41 @@
           <div class="w3-col m12">
             <div class="w3-card  w3-round w3-white w3-topbar w3-border-amber">
               <div class="w3-container w3-theme-d5 w3-padding">
-               <h3 class="w3-center w3-text-amber">Workforce Home</h3>
+               <h3 class="w3-center w3-text-amber">Search Workforce</h3>
               </div>
             </div>
           </div>
         </div>
-        <div class="w3-container  w3-round w3-margin article-metadata"><br>
-          <img src="{% static 'images/nini.jpg' %}" style="width:100%" class="w3-margin-bottom w3-hover-greyscale">
-            <ul class="w3-ul w3-container  w3-margin-bottom w3-shadow">
- 
+        <div class="w3-container  w3-round "><br>
+          
+            <ul class="w3-ul w3-container w3-theme-l4 w3-margin-bottom w3-shadow">
+                <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-hide w3-left w3-circle w3-margin-right" style="width:60px">
+              
                 {% for post in posts %}
-                <li class="w3-bar  w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
-                    <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-large w3-right">×</span>
-                   
-                    
+                <li class="w3-bar w3-white w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
+                 
+                    <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-theme-l5 w3-hover-none w3-xlarge w3-right">×</span>
                       <div class="w3-bar-item w3-third">
-                      <img src="{{ post.name.profile.image.url }}" class="w3-bar-item w3-hide-small w3-circle w3-hover-greyscale " style="width:80px;"> 
-                  
+                        <img src="{{ post.name.profile.image.url }}" class="w3-bar-item w3-hide-small w3-circle " style="width:100px;">
                       </div>
-                   
+                    <a class="mr-2" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">
                       <div class="w3-twothirds  w3-small">
-                        
-                          <a class="mr-2" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">
                             <span class="w3-normal"><b>{{ post.name.first_name|capfirst }} {{ post.name.last_name|capfirst }}</b></span><br>
                             <span>Profession: {{ post.profession|capfirst }}</span>/
                             <span>Age:{{ post.age }}Yrs</span>/    
                             <span>Expirience: {{ post.expirience }}Yrs</span>/ 
                             <span>Education Level: {{ post.education_level|capfirst }}</span>/ 
-                            <span>College: {{ post.college|capfirst }}</span> /
-                            <span>County: {{ post.county|capfirst }}</span>/<span>Posted: {{ post.date_posted }}</span> 
+                            <span>College: {{ post.college|capfirst }}</span><br>
+                            <span>County: {{ post.county|capfirst }}</span>/
+                            <span>Posted: {{ post.date_posted }}</span> 
 
-                          </a> 
-                          
+                          </a>    
                       </div> 
                       <span><img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-hide-small w3-right w3-circle w3-margin-right" style="width:35px"></span>
                 </li>            
               {% endfor %}
-              
+              <img src="{% static 'images/slider-image1.jpg' %}" style="width:100%" class="w3-margin-bottom">
+
               <div class="row">
                 <div class="col-md-12">
                   {% if posts.has_other_pages %}
@@ -103,7 +99,7 @@
                           </li>
                         {% endif %}
                       {% endfor %}
-                      {% if posts.has_next %}
+                      {% if listings.has_next %}
                         <li class="page-item">
                           <a href="?page={{posts.next_page_number}}" class="page-link">&raquo;</a>
                         </li>
@@ -116,16 +112,19 @@
                   {% endif %}
                 </div>
               </div>
-
-              
             </ul>
-            
         </div> 
     <!-- End Middle Column -->
     </div>
     
     <!-- Right Column -->
+    
     <div class="w3-col m2">
+        <div class="w3-card w3-white w3-hide-large w3-hide-medium w3-margin-top">
+            {% include 'partials/_searchbar.html' %} 
+          
+          
+        </div>
       {% include 'partials/_rightbar.html' %} 
       
     <!-- End Right Column -->

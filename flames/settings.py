@@ -28,16 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGIN_URL = '/login'
 # Application definition
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',
-    'links.apps.LinksConfig',
     'pages.apps.PagesConfig',
     'testaments.apps.TestamentsConfig',
-    'transports.apps.TransportsConfig',
-    'suppliers.apps.SuppliersConfig',
     'contacts.apps.ContactsConfig',
     'partners.apps.PartnersConfig',
     'django.contrib.admin',
@@ -49,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'ckeditor', 
     'crispy_forms',
+    'searches'
 ]
 
 MIDDLEWARE = [

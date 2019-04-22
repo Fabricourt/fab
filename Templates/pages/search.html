@@ -14,18 +14,16 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-signal.css">
 
 <!-- Page Container -->
-
+<br><br><br>
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">    
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
-    <div class="w3-col m3">
+    <div class="w3-col m3 w3-margin-bottom">
       
       <!-- Profile -->
-      <div class="w3-card w3-white  ">
+      <div class="w3-hide-small ">
           {% include 'partials/_searchbar.html' %} 
-        
-        
       </div>
       <br>
       <!-- Accordion -->
@@ -47,10 +45,10 @@
             </div>
           </div>
         </div>
-        <div class="w3-container w3-white w3-round "><br>
-          <img src="{% static 'images/slider-image1.jpg' %}" style="width:100%" class="w3-margin-bottom">
+        <div class="w3-container  w3-round "><br>
+          
             <ul class="w3-ul w3-container w3-theme-l4 w3-margin-bottom w3-shadow">
-                <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                <img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-hide w3-left w3-circle w3-margin-right" style="width:60px">
               
                 {% for post in posts %}
                 <li class="w3-bar w3-white w3-card w3-margin-bottom w3-hover-shadow w3-white w3-border-white">
@@ -72,10 +70,10 @@
 
                           </a>    
                       </div> 
-                 
+                      <span><img src="{% static 'images/bee.jpg' %}"  alt="Avatar" class="w3-hide-small w3-right w3-circle w3-margin-right" style="width:35px"></span>
                 </li>            
               {% endfor %}
-             
+              <img src="{% static 'images/slider-image1.jpg' %}" style="width:100%" class="w3-margin-bottom">
 
               <div class="row">
                 <div class="col-md-12">
@@ -120,7 +118,13 @@
     </div>
     
     <!-- Right Column -->
+    
     <div class="w3-col m2">
+        <div class="w3-card w3-white w3-hide-large w3-hide-medium w3-margin-top">
+            {% include 'partials/_searchbar.html' %} 
+          
+          
+        </div>
       {% include 'partials/_rightbar.html' %} 
       
     <!-- End Right Column -->
