@@ -1,6 +1,6 @@
 {% load static %}
 <!-- Navbar -->
-<nav class="navbar navbar-expand-md navbar-dark  w3-theme-d5 fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark w3-theme-d5 fixed-top">
 <a href="{% url 'index' %}"><img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:35px; height:35px;"> </a> 
     <a class="navbar-brand w3-text-amber" href="{% url 'index' %}">Kimethi</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,103 @@
     </div>
   </nav>
 
+  <nav class="navbar navbar-expand-md navbar-dark w3-theme-d5 w3-hide fixed-top">
+    <a href="{% url 'index' %}"><img src="{% static 'images/bee.jpg' %}" class="logo w3-circle" alt="" style="width:35px; height:35px;"> </a> 
+    <a class="navbar-brand w3-text-amber" href="{% url 'index' %}">Kimethi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav w3-half">
+        <li
+          {% if '/' == request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-home w3-text-amber"></i> Home</a>
+        </li>
+        <li
+        {% if 'pot_list' == request.path %}
+          class="nav-item active mr-3"
+        {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+      >
+        <a class="nav-link" href="{% url 'pot_list' %}"><i class="fa fa-question w3-text-amber"></i> How To</a>
+      </li>
+      <li
+      {% if 'speak' == request.path %}
+        class="nav-item active mr-3"
+      {% else %}
+        class="nav-item mr-3"
+      {% endif %}
+    >
+      <a class="w3-hide nav-link" href="{% url 'speak' %}"><i class="fa fa-comment w3-text-amber"></i> Speak</a>
+    </li>
 
+      </ul>
+      <ul class="w3-quarter"></ul>
+      <ul class="navbar-nav w3-quarter ml-auto">
+        {% if user.is_authenticated %}
+        <li
+        {% if 'workers' in request.path %}
+          class="nav-item active mr-3"
+        {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+      >
+        <a class=" w3-hide nav-link" href="{% url 'workers' %}"><i class="fa fa-id-card-o w3-text-amber"></i> Workers</a>
+      </li>
+      <li
+      {% if 'employers' in request.path %}
+        class="nav-item active mr-3"
+      {% else %}
+        class="nav-item mr-3"
+      {% endif %}
+    >
+      <a class="nav-link w3-hide " href="{% url 'employers' %}"><i class="fa fa-braille w3-text-amber"></i> Employers</a>
+    </li>
+
+          <li class="nav-item mr-3">
+            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+              <i class="fas fa-sign-out-alt w3-text-amber"></i> Logout
+            </a>
+            <form action="{% url 'logout' %}" method="POST" id="logout">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
+          </li>
+        {% else %}
+          <li
+          {% if 'register' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+            <a class="nav-link " href="{% url 'register' %}">
+              <i class="fas fa-user-plus w3-text-amber"></i> Register</a>
+          </li>
+          <li
+          {% if 'login' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'login' %}">
+              <i class="fas fa-sign-in-alt w3-text-amber"></i>
+
+              Login</a>
+          </li>
+     
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

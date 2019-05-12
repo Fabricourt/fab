@@ -6,8 +6,6 @@ from ckeditor.fields import RichTextField
 from PIL import Image
 
 
-
-
 class Post(models.Model):
     profession = models.CharField(max_length=100)
     service = models.CharField(max_length=200, blank=True, null=True)

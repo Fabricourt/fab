@@ -23,14 +23,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <div class="w3-col m3">
       <!-- Profile -->
       
-      <p></p>
-      <!-- Accordion -->
-    
-      
-      <!-- Interests --> 
-     
-     
-    
+   <p></p>
+  
     <!-- End Left Column -->
     </div>
     
@@ -47,124 +41,19 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           </div>
         </div>
 
-        <div class="content-section">
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group w3-border-blue">
-                    <legend class="border-bottom w3-border-blue mb-4 w3-margin-top w3-center w3-text-red">Create/Update </legend>
-                    {{ form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Post</button>
-                </div>
-            </form>
-        </div>
-       <!--<form method="POST"> 
+    <div class="content-section">
+        <form method="POST">
             {% csrf_token %}
-            
-            <fieldset class=" w3-border-theme form-group">
-                <legend class="border-bottom w3-border-theme w3-center mb-4"> <h3 class="w3-center w3-text-indigo">[Please fill in the provided fields]</h5></legend>
-                <div class="w3-container w3-border-amber w3-round-large w3-theme-l5">
-                  <h5 class="w3-text-red">NB: PLEASE UPDATE YOUR PROFILE BEFORE YOU FILL THIS FORM. IF NECESSARY ADD IMAGES SHOWCASING YOUR WORK SO THAT THEY CAN BE AVAILABLE IN THE POST</h3>
-                   
-                <div>
-                      <div class="w3-padding w3-margin-top">
-                          <div class="w3-text-indigo"><h5>What Kind of Job are You Looking For</h5></div>
-                          {{ form.profession|as_crispy_field }}
-                      </div>
-                </div>
-                        
-                        <div class="w3-padding">
-                            <i class="w3-small">Add username, age & expirience</i>
-                            <div class="form-row">
-                              <div class="form-group col-md-6 mb-0" required>
-                                  {{ form.name|as_crispy_field }}
-                              </div>
-                              <div class="form-group col-md-3 mb-0">
-                              
-                                {{ form.age|as_crispy_field }}
-                              </div> 
-                              <div class="form-group col-md-3 mb-0">
-                                
-                                  {{ form.expirience|as_crispy_field }}
-                              </div> 
-                                   
-                            </div>
-                        </div>
-                        <div class="w3-padding">
-                          <div class="form-row">
-                            <div class="form-group col-md-6 mb-0" required>
-                                {{ form.email|as_crispy_field }}
-                            </div>
-                            
-                            <div class="form-group col-md-6 mb-0" required>
-                                {{ form.address|as_crispy_field }}
-                            </div>
-                        </div>
-                      </div>
-                     
-                        <div class="w3-padding">
-                            <div class="form-row">
-                                    <div class="form-group col-md-6 mb-0" required>
-                                      <i class="w3-small">current home location</i>
-                                        {{ form.home|as_crispy_field }}
-                                    </div>
-                                    <div class="form-group col-md-6 mb-0" required>
-                                      <i class="w3-small">current country of residence</i>
-                                      {{ form.county|as_crispy_field }}
-                                    </div> 
-                            </div>
-                        </div>
-                        <div class="w3-padding">
-                            <div class="form-row">
-                                    <div class="form-group col-md-6 mb-0" required>
-                                        {{ form.education_level|as_crispy_field }}
-                                    </div>
-                                    <div class="form-group col-md-6 mb-0">
-                                      {{ form.college|as_crispy_field }}
-                                    </div> 
-                            </div>
-                        </div>
-                        <div class="w3-padding">
-                          
-                            <div class="w3-text-indigo"><h5>Why Hire You</h5></div>
-                            {{ form.why_you_essay|as_crispy_field }}
-                        </div>
-                        <div class="w3-padding">
-                                <div class="w3-text-indigo"><h5>Create Your Resume Here</h5></div> 
-                                {{ form.resume|as_crispy_field }}
-                        </div>
-                      
-                     
-                            <div class="w3-padding">
-                                    <h2 class="w3-center w3-text-red">Pick One or Both</h2>
-                                    <div class="form-row">
-                                           
-                                            <div class="form-group w3-text-green w3-large col-md-4 mb-0">
-                                             <span class="w3-small">Looking For Full Time Work -</span>   
-                                            <input type="checkbox" name="is_fulltime" >
-                                            </div>
-                                            <div class="form-group w3-text-indigo w3-large col-md-4 mb-0">
-                                            <span class="w3-small">Available For Part Time Work</span>
-                                            <input type="checkbox" name="is_parttime">
-                                            </div> 
-                                            <div class="form-group w3-text-indigo w3-large col-md-4 mb-0">
-                                            <span class="w3-small">Available Employee</span><br>
-                                            <input type="checkbox" name="is_employee">
-                                            </div> 
-                                          
-                                    </div>
-                                </div>
-                                   
-                    <div>
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Post</legend>
+                {{ form|crispy }}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Post</button>
             </div>
-        </div>
         </form>
     </div>
-    --> 
+
 
     <!-- End Middle Column -->
     </div>
